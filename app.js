@@ -15,4 +15,18 @@ app.use(bodyParser.json());
 app.use('/api', api);
 app.use(express.static(PUBLIC_DIR));
 
+app.use((err, req, res, next) => {
+  res.status(500).json({
+    error: err.message
+  })
+})
+
+app.listen(PORT, () => {
+  console.log(`server started on port ${PORT}`)
+})
+
+export default app
+
 app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
+
+export default app
